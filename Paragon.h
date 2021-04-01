@@ -9,8 +9,8 @@
 // original code started at 0, not  sure if we should start at 1?
 #define SOL_OUTHOLE           1
 #define SOL_KNOCKER           2
-#define SOL_SAUCER_TREASURE	  3  // saucer behind inline drops 5x
-#define SOL_SAUCER_PARAGON	  4  // paragon saucer
+#define SOL_SAUCER_TREASURE   3  // saucer behind inline drops 5x
+#define SOL_SAUCER_PARAGON    4  // paragon saucer
 #define SOL_SAUCER_GOLDEN     5  // golden cliffs saucer
 #define SOL_LEFT_SLING        6
 #define SOL_RIGHT_SLING       7
@@ -22,7 +22,6 @@
 #define SOL_DROP_RIGHT        13
 #define SOL_COIN_LOCKOUT      14
 #define SOL_FLIPPER_ENABLE    15
-
 
 // Switches
 
