@@ -9,9 +9,9 @@
 // original code started at 0, not  sure if we should start at 1?
 #define SOL_OUTHOLE           1
 #define SOL_KNOCKER           2
-#define SOL_SAUCER_TREASURE	  3
-#define SOL_SAUCER_PARAGON	  4
-#define SOL_SAUCER_GOLDEN     5
+#define SOL_SAUCER_TREASURE	  3  // saucer behind inline drops 5x
+#define SOL_SAUCER_PARAGON	  4  // paragon saucer
+#define SOL_SAUCER_GOLDEN     5  // golden cliffs saucer
 #define SOL_LEFT_SLING        6
 #define SOL_RIGHT_SLING       7
 #define SOL_LEFT_BUMPER       8
@@ -32,26 +32,36 @@
 #define SW_DROP_INLINE_A      4
 
 // Defines for switches
-#define SW_CREDIT_RESET   6
-#define SW_TILT           7
-#define SW_OUTHOLE        8
-#define SW_COIN_1         9
-#define SW_COIN_2         10
-#define SW_COIN_3         11
-#define SW_SLAM           16
+#define SW_CREDIT_RESET       6
+#define SW_TILT               7
+#define SW_OUTHOLE            8
+#define SW_COIN_1             9
+#define SW_COIN_2             10
+#define SW_COIN_3             11
+#define SW_SLAM               16
 
-#define SW_DROP_TOP       17
-#define SW_DROP_MIDDLE    18
-#define SW_DROPO_BOTTOM   19
+#define SW_DROP_TOP           19
+#define SW_DROP_MIDDLE        18
+#define SW_DROPO_BOTTOM       17
 
-#define SW_RIGHT_OUTLANE  22
-#define SW_RIGHT_FEEDER   23
-#define SW_PARAGON        24
+#define SW_RIGHT_OUTLANE      22
+#define SW_RIGHT_INLANE       23
+#define SW_PARAGON_SAUCER     24   // paragon saucer
 
-#define SW_TOP_ROLLOVER
-#define SW_500_REBOUND
-#define SW_WATERFALL_ROLLOVER
-#define SW_CENTER_TARGET
+#define SW_TOP_ROLLOVER       26   // top center star rollover
+#define SW_500_REBOUND        27   // 500 point rebound (both left and right)
+#define SW_WATERFALL_ROLLOVER 28   // waterfall (right squigly star rollover - add bonus)
+#define SW_UPPER_STANDUP      29   // lower center target (advance bonus)
+#define SW_TOP_STANDUP        30   // top center standup target (advance bonus)
+#define SW_TREASURE_SAUCER    31   // treasure chamber saucer (behind inline drops)
+#define SW_GOLDEN_SAUCER      32   // golden cliffs saucer 
+#define SW_SPINNER            33   // spinner
+#define SW_STAR_ROLLOVER      34   // top right, golden cliffs and drop target rebound switch (advance bonus?)
+
+#define SW_RIGHT_SLING        35   // right slingshot
+#define SW_LEFT_SLING         36   // left slingshot
+
+
 #
 
 
