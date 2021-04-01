@@ -67,7 +67,7 @@
 
 // Lamp Definitions
 
-#define L_1K_BONUS			  0
+#define L_1K_BONUS			      0
 #define L_2K_BONUS            1
 #define L_3K_BONUS            2
 #define L_4K_BONUS            3
