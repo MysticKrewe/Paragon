@@ -16,7 +16,7 @@
 #define SOL_RIGHT_SLING       7
 #define SOL_LEFT_BUMPER       8
 #define SOL_RIGHT_BUMPER      9
-#define SOL_BOTTOM_BUMPER     10
+#define SOL_BEAST_BUMPER      10 // bottom left pop bumper in beast area
 #define SOL_CENTER_BUMPER     11
 #define SOL_DROP_INLINE       12
 #define SOL_DROP_RIGHT        13
@@ -25,10 +25,11 @@
 
 // Switches
 
-#define SW_DROP_INLINE_D      1
-#define SW_DROP_INLINE_C      2
-#define SW_DROP_INLINE_B      3
-#define SW_DROP_INLINE_A      4
+#define SW_DROP_INLINE_D      1   // 1000 + 3x bonus multiplier
+#define SW_DROP_INLINE_C      2   // 1000 + 2x bonus multiplier
+#define SW_DROP_INLINE_B      3   // 1000 + bonus advance
+#define SW_DROP_INLINE_A      4   // 1000 + bonus advance
+#define SW_TREASURE_SAUCER    31  // 5000 + 5x bonus multiplier, lites extra ball, then special - treasure chamber saucer (behind inline drops)
 
 // Defines for switches
 #define SW_CREDIT_RESET       6
@@ -39,30 +40,30 @@
 #define SW_COIN_3             11
 #define SW_SLAM               16
 
-#define SW_DROP_TOP           19
-#define SW_DROP_MIDDLE        18
-#define SW_DROPO_BOTTOM       17
+#define SW_DROP_TOP           19   // 500 points
+#define SW_DROP_MIDDLE        18   // 500 points
+#define SW_DROP_BOTTOM        17   // 500 points - all three down awards 10k, 15k, 20k, 25k, special
 
-#define SW_RIGHT_OUTLANE      22
-#define SW_RIGHT_INLANE       23
-#define SW_PARAGON_SAUCER     24   // paragon saucer
+#define SW_RIGHT_OUTLANE      22   // 1000 points
+#define SW_RIGHT_INLANE       23   // 1000 points
+#define SW_PARAGON_SAUCER     24   // paragon saucer - 1 bonus + light letter
 
-#define SW_TOP_ROLLOVER       26   // top center star rollover
+#define SW_TOP_ROLLOVER       26   // top center star rollover (500 points + advance bonus)
 #define SW_500_REBOUND        27   // 500 point rebound (both left and right)
-#define SW_WATERFALL_ROLLOVER 28   // waterfall (right squigly star rollover - add bonus)
-#define SW_UPPER_STANDUP      29   // lower center target (advance bonus)
-#define SW_TOP_STANDUP        30   // top center standup target (advance bonus)
-#define SW_TREASURE_SAUCER    31   // treasure chamber saucer (behind inline drops)
-#define SW_GOLDEN_SAUCER      32   // golden cliffs saucer 
-#define SW_SPINNER            33   // spinner
-#define SW_STAR_ROLLOVER      34   // top right, golden cliffs and drop target rebound switch (advance bonus?)
+#define SW_WATERFALL_ROLLOVER 28   // 1000 points + bonus advance, waterfall (right squigly star rollover)
+#define SW_UPPER_STANDUP      29   // 10 points + advance bonus, lower center target
+#define SW_TOP_STANDUP        30   // 10 points + advance bonus, top center standup target 
 
-#define SW_RIGHT_SLING        35   // right slingshot
-#define SW_LEFT_SLING         36   // left slingshot
-#define SW_BEAST_BUMPER       37   // beast's lair pop bumper lower left
-#define SW_CENTER_BUMPER      38
-#define SW_RIGHT_BUMPER       39
-#define SW_LEFT_BUMPER        40
+#define SW_GOLDEN_SAUCER      32   // golden cliffs saucer (increasing award from 2k+ 2k each time)
+#define SW_SPINNER            33   // spinner (100 points, when hit 5x advances bonus)
+#define SW_STAR_ROLLOVER      34   // 50 points, top right, upper right star rollover, golden cliffs and drop target rebound switch (advance bonus?)
+
+#define SW_RIGHT_SLING        35   // 500 points - right slingshot
+#define SW_LEFT_SLING         36   // 500 points - left slingshot
+#define SW_BEAST_BUMPER       37   // 100 points - beast's lair pop bumper lower left
+#define SW_CENTER_BUMPER      38   // 100 points
+#define SW_RIGHT_BUMPER       39   // 100 points
+#define SW_LEFT_BUMPER        40   // 100 points
 
 // Lamp Definitions
 
@@ -139,25 +140,11 @@
 #define L_BB_BALL_IN_PLAY     48
 #define L_BB_SHOOT_AGAIN      40
 
-/*
-#define L_
-#define L_
-
-// Defines for switches
-#define SW_CREDIT_RESET   5
-#define SW_TILT           6
-#define SW_OUTHOLE        32
-#define SW_COIN_1         1
-#define SW_COIN_2         0
-#define SW_COIN_3         2
-
-*/
-
 
 // SWITCHES_WITH_TRIGGERS are for switches that will automatically
 // activate a solenoid (like in the case of a chime that rings on a rollover)
 // but SWITCHES_WITH_TRIGGERS are fully debounced before being activated
-#define NUM_SWITCHES_WITH_TRIGGERS         4    // 6
+#define NUM_SWITCHES_WITH_TRIGGERS         6    //
 
 // PRIORITY_SWITCHES_WITH_TRIGGERS are switches that trigger immediately
 // (like for pop bumpers or slings) - they are not debounced completely
@@ -165,10 +152,10 @@
 
 // Define automatic solenoid triggers (switch, solenoid, number of 1/120ths of a second to fire)
 struct PlayfieldAndCabinetSwitch TriggeredSwitches[] = {
-  { SW_TOP_BUMPER, SOL_TOP_BUMPER, 4 },
-  { SW_BOTTOM_BUMPER, SOL_BOTTOM_BUMPER, 4 },
-  { SW_UL_SLING, SOL_UL_SLING, 4 },
-  { SW_LL_SLING, SOL_LL_SLING, 4 },
-  { SW_UR_SLING, SOL_UR_SLING, 4 },
-  { SW_LR_SLING, SOL_LR_SLING, 4 },
+  { SW_BEAST_BUMPER, SOL_BEAST_BUMPER, 4 },
+  { SW_CENTER_BUMPER, SOL_CENTER_BUMPER, 4 },
+  { SW_RIGHT_BUMPER, SOL_RIGHT_BUMPER, 4 },
+  { SW_LEFT_BUMPER, SOL_LEFT_BUMPER, 4 },
+  { SW_LEFT_SLING, SOL_LEFT_SLING, 4 },
+  { SW_RIGHT_SLING, SOL_RIGHT_SLING, 4 },
 };
