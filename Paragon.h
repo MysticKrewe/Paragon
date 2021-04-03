@@ -2,11 +2,16 @@
  
  Paragon - BSOS code - by Mike from PinballHelp.com
  
+ Switch, solenoid, light definitions
+ 
+ Version 0.1.0 - 04/03/21
  
  */
 
-// Defines for solenoids
+// Solenoids
+
 // original code started at 0, not  sure if we should start at 1?
+
 #define SOL_OUTHOLE           1
 #define SOL_KNOCKER           2
 #define SOL_SAUCER_TREASURE   3  // saucer behind inline drops 5x
@@ -23,15 +28,7 @@
 #define SOL_COIN_LOCKOUT      14
 #define SOL_FLIPPER_ENABLE    15
 
-// Switches
-
-#define SW_DROP_INLINE_D      1   // 1000 + 3x bonus multiplier
-#define SW_DROP_INLINE_C      2   // 1000 + 2x bonus multiplier
-#define SW_DROP_INLINE_B      3   // 1000 + bonus advance
-#define SW_DROP_INLINE_A      4   // 1000 + bonus advance
-#define SW_TREASURE_SAUCER    31  // 5000 + 5x bonus multiplier, lites extra ball, then special - treasure chamber saucer (behind inline drops)
-
-// Defines for switches
+// Cabinet Switches
 #define SW_CREDIT_RESET       6
 #define SW_TILT               7
 #define SW_OUTHOLE            8
@@ -39,6 +36,14 @@
 #define SW_COIN_2             10
 #define SW_COIN_3             11
 #define SW_SLAM               16
+
+// Playfield Switches
+
+#define SW_DROP_INLINE_D      1   // 1000 + 3x bonus multiplier
+#define SW_DROP_INLINE_C      2   // 1000 + 2x bonus multiplier
+#define SW_DROP_INLINE_B      3   // 1000 + bonus advance
+#define SW_DROP_INLINE_A      4   // 1000 + bonus advance
+#define SW_TREASURE_SAUCER    31  // 5000 + 5x bonus multiplier, lites extra ball, then special - treasure chamber saucer (behind inline drops)
 
 #define SW_DROP_TOP           19   // 500 points
 #define SW_DROP_MIDDLE        18   // 500 points
