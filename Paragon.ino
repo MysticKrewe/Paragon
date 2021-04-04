@@ -1,26 +1,12 @@
 /**************************************************************************
-       This file is part of Trident2020.
-
-    I, Dick Hamill, the author of this program disclaim all copyright
-    in order to make this program freely available in perpetuity to
-    anyone who would like to use it. Dick Hamill, 12/1/2020
-
-    Trident2020 is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
-
-    Trident2020 is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
-
-    See <https://www.gnu.org/licenses/>.
+ 
+ Paragon 2021 - by Mike from PinballHelp.com / MysticKrewe.com
+ 
 */
 
 #include "BSOS_Config.h"
 #include "BallySternOS.h"
-#include "Trident2020.h"
+#include "Paragon.h"
 #include "SelfTestAndAudit.h"
 #include <EEPROM.h>
 
@@ -31,9 +17,9 @@
 SendOnlyWavTrigger wTrig;             // Our WAV Trigger object
 #endif
 
-#define TRIDENT2020_MAJOR_VERSION  2020
-#define TRIDENT2020_MINOR_VERSION  2
-#define DEBUG_MESSAGES  0
+#define PARAGON_MAJOR_VERSION  2021
+#define PARAGON_MINOR_VERSION  0
+#define DEBUG_MESSAGES  1
 
 
 /*********************************************************************
@@ -51,6 +37,7 @@ SendOnlyWavTrigger wTrig;             // Our WAV Trigger object
 //  positive - game play
 char MachineState = 0;
 boolean MachineStateChanged = true;
+
 #define MACHINE_STATE_ATTRACT         0
 #define MACHINE_STATE_INIT_GAMEPLAY   1
 #define MACHINE_STATE_INIT_NEW_BALL   2
@@ -58,6 +45,7 @@ boolean MachineStateChanged = true;
 #define MACHINE_STATE_COUNTDOWN_BONUS 99
 #define MACHINE_STATE_BALL_OVER       100
 #define MACHINE_STATE_MATCH_MODE      110
+#define MACHINE_STATE_BONUS_BALL      120
 
 #define MACHINE_STATE_ADJUST_FREEPLAY           -17
 #define MACHINE_STATE_ADJUST_BALL_SAVE          -18
@@ -69,6 +57,7 @@ boolean MachineStateChanged = true;
 #define MACHINE_STATE_ADJUST_SCROLLING_SCORES   -24
 #define MACHINE_STATE_ADJUST_EXTRA_BALL_AWARD   -25
 #define MACHINE_STATE_ADJUST_SPECIAL_AWARD      -26
+
 #define MACHINE_STATE_ADJUST_DIM_LEVEL          -27
 #define MACHINE_STATE_ADJUST_DONE               -28
 
@@ -308,6 +297,9 @@ void DecodeDIPSwitchParameters() {
 
 }
 */
+
+// ----------------------------------------------------------------------------------------------------
+
 void ReadStoredParameters() {
   HighScore = BSOS_ReadULFromEEProm(BSOS_HIGHSCORE_EEPROM_START_BYTE, 10000);
   Credits = BSOS_ReadByteFromEEProm(BSOS_CREDITS_EEPROM_BYTE);
@@ -357,6 +349,7 @@ void ReadStoredParameters() {
 
 }
 
+// ----------------------------------------------------------------------------------------------------
 
 void setup() {
   if (DEBUG_MESSAGES) {
@@ -1138,7 +1131,7 @@ int RunSelfTest(int curState, boolean curStateChanged) {
           if (AdjustmentType == ADJ_TYPE_MIN_MAX) curVal = AdjustmentValues[0];
           else {
             if (curVal > 99) curVal = AdjustmentValues[0];
-            else curVal = 99;
+            else curVal = 99;  // this is 99 because the display can't go higher than 99? - mike
           }
         }
         *CurrentAdjustmentByte = curVal;
@@ -1188,7 +1181,7 @@ int RunSelfTest(int curState, boolean curStateChanged) {
   }
 
   return returnState;
-}
+} // end  RunSelfTest()
 
 
 
@@ -1227,7 +1220,7 @@ void PlayBackgroundSong(byte songNum) {
   songNum = test;
 #endif
 
-}
+} // end: PlayBackgroundSong
 
 #ifdef BALLY_STERN_OS_USE_SB100
 #define SOUND_QUEUE_SIZE 32

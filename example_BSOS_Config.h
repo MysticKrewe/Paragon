@@ -16,7 +16,7 @@
     GNU General Public License for more details.
 
     See <https://www.gnu.org/licenses/>.
- */  // default version used by Mike / PinballHelp
+ */
 
 #ifndef BSOS_CONFIG_H
 
@@ -34,7 +34,7 @@
 //#define BALLY_STERN_OS_USE_SQUAWK_AND_TALK
 //#define BALLY_STERN_OS_USE_SB100
 //#define BALLY_STERN_OS_USE_SB300
-//#define USE_WAV_TRIGGER           // enable this later
+//#define USE_WAV_TRIGGER
 //#define USE_WAV_TRIGGER_1p3
 //#define BALLY_STERN_OS_USE_AUX_LAMPS
 //#define BALLY_STERN_OS_USE_7_DIGIT_DISPLAYS

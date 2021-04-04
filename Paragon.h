@@ -145,6 +145,20 @@
 #define L_BB_BALL_IN_PLAY     48
 #define L_BB_SHOOT_AGAIN      40
 
+// define renames to match BSOS standards
+
+#define MATCH                   L_BB_MATCH
+#define SAME_PLAYER             L_BB_SHOOT_AGAIN
+#define EXTRA_BALL              L_SHOOT_AGAIN
+#define BALL_IN_PLAY            L_BB_BALL_IN_PLAY
+#define HIGH_SCORE              L_BB_HIGH_SCORE
+#define GAME_OVER               L_BB_GAME_OVER
+#define TILT                    L_BB_TILT
+#define PLAYER_1_UP             0
+#define PLAYER_2_UP             0
+#define PLAYER_3_UP             0
+#define PLAYER_4_UP             0
+
 
 // SWITCHES_WITH_TRIGGERS are for switches that will automatically
 // activate a solenoid (like in the case of a chime that rings on a rollover)
