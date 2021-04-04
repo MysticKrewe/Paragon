@@ -1,3 +1,14 @@
+/**************************************************************************
+ 
+ Paragon 2021 - by Mike from PinballHelp.com / MysticKrewe.com
+ 
+ 0.1 - Initial version
+ 
+ 
+*/
+#define MAJOR_VERSION     0
+#define MINOR_VERSION     1
+
 #include "BallySternOS.h"
 #include "Paragon.h"            // "PinballMachineBase.h"
 #include "SelfTestAndAudit.h"
@@ -54,6 +65,58 @@ boolean BallSaveUsed = false;
 byte BallSaveNumSeconds = 0;
 byte BallsPerGame = 3;
 
+// ----------------------------------------------------------------------------------------------------
+
+void ReadStoredParameters() {
+  HighScore = BSOS_ReadULFromEEProm(BSOS_HIGHSCORE_EEPROM_START_BYTE, 10000);
+  Credits = BSOS_ReadByteFromEEProm(BSOS_CREDITS_EEPROM_BYTE);
+  if (Credits > MaximumCredits) Credits = MaximumCredits;
+
+  ReadSetting(EEPROM_FREE_PLAY_BYTE, 0);
+  FreePlayMode = (EEPROM.read(EEPROM_FREE_PLAY_BYTE)) ? true : false;
+
+  BallSaveNumSeconds = ReadSetting(EEPROM_BALL_SAVE_BYTE, 15);
+  if (BallSaveNumSeconds > 20) BallSaveNumSeconds = 20;
+
+  MusicLevel = ReadSetting(EEPROM_MUSIC_LEVEL_BYTE, 3);
+  if (MusicLevel > 3) MusicLevel = 3;
+
+  TournamentScoring = (ReadSetting(EEPROM_TOURNAMENT_SCORING_BYTE, 0)) ? true : false;
+
+  MaxTiltWarnings = ReadSetting(EEPROM_TILT_WARNING_BYTE, 2);
+  if (MaxTiltWarnings > 2) MaxTiltWarnings = 2;
+
+  byte awardOverride = ReadSetting(EEPROM_AWARD_OVERRIDE_BYTE, 99);
+  if (awardOverride != 99) {
+    ScoreAwardReplay = awardOverride;
+  }
+
+  byte ballsOverride = ReadSetting(EEPROM_BALLS_OVERRIDE_BYTE, 99);
+  if (ballsOverride == 3 || ballsOverride == 5) {
+    BallsPerGame = ballsOverride;
+  } else {
+    if (ballsOverride != 99) EEPROM.write(EEPROM_BALLS_OVERRIDE_BYTE, 99);
+  }
+
+  ScrollingScores = (ReadSetting(EEPROM_SCROLLING_SCORES_BYTE, 1)) ? true : false;
+
+  ExtraBallValue = BSOS_ReadULFromEEProm(EEPROM_EXTRA_BALL_SCORE_BYTE);
+  if (ExtraBallValue % 1000 || ExtraBallValue > 100000) ExtraBallValue = 20000;
+
+  SpecialValue = BSOS_ReadULFromEEProm(EEPROM_SPECIAL_SCORE_BYTE);
+  if (SpecialValue % 1000 || SpecialValue > 100000) SpecialValue = 40000;
+
+  DimLevel = ReadSetting(EEPROM_DIM_LEVEL_BYTE, 2);
+  if (DimLevel < 2 || DimLevel > 3) DimLevel = 2;
+  BSOS_SetDimDivisor(1, DimLevel);
+
+  AwardScores[0] = BSOS_ReadULFromEEProm(BSOS_AWARD_SCORE_1_EEPROM_START_BYTE);
+  AwardScores[1] = BSOS_ReadULFromEEProm(BSOS_AWARD_SCORE_2_EEPROM_START_BYTE);
+  AwardScores[2] = BSOS_ReadULFromEEProm(BSOS_AWARD_SCORE_3_EEPROM_START_BYTE);
+
+}
+
+// ----------------------------------------------------------------------------------------------------
 
 void setup() {
   if (DEBUG_MESSAGES) {
@@ -106,7 +169,17 @@ void setup() {
     Serial.write(buf);
   }
 
-  HighScore = BSOS_ReadULFromEEProm(BSOS_HIGHSCORE_EEPROM_START_BYTE, 10000);
+  // Read parameters from EEProm
+  ReadStoredParameters();
+
+  CurrentScores[0] = MAJOR_VERSION;
+  CurrentPlayerCurrentScore = MAJOR_VERSION;
+  CurrentScores[1] = MINOR_VERSION;
+  CurrentScores[2] = BALLY_STERN_OS_MAJOR_VERSION;
+  CurrentScores[3] = BALLY_STERN_OS_MINOR_VERSION;
+  ResetScoresToClearVersion = true;  
+  
+  //HighScore = BSOS_ReadULFromEEProm(BSOS_HIGHSCORE_EEPROM_START_BYTE, 10000);  replaced by ReadStoredParameters()
   
   Credits = BSOS_ReadByteFromEEProm(BSOS_CREDITS_EEPROM_BYTE);
   if (Credits>MaximumCredits) Credits = MaximumCredits;

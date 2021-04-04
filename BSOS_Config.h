@@ -39,6 +39,8 @@
 //#define BALLY_STERN_OS_USE_AUX_LAMPS
 //#define BALLY_STERN_OS_USE_7_DIGIT_DISPLAYS
 
+//#define USE_PLAYER_LAMPS  // enable if there are player 1-4 controlled lamps in the backbox
+
 //#define BALLY_STERN_OS_USE_6_DIGIT_CREDIT_DISPLAY_WITH_7_DIGIT_DISPLAYS
 #define BALLY_STERN_OS_HARDWARE_REV       
 //#define BALLY_STERN_OS_DIMMABLE_DISPLAYS

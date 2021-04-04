@@ -1,8 +1,4 @@
-/**************************************************************************
- 
- Paragon 2021 - by Mike from PinballHelp.com / MysticKrewe.com
- 
-*/
+`
 
 #include "BSOS_Config.h"
 #include "BallySternOS.h"
