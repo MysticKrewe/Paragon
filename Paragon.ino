@@ -419,9 +419,9 @@ void SetPlayerLamps(byte numPlayers, byte playerOffset = 0, int flashPeriod = 0)
 void ShowBonusOnTree(byte bonus, byte dim=0) {
   if (bonus>MAX_DISPLAY_BONUS) bonus = MAX_DISPLAY_BONUS;
   
-  byte cap = 10;
+  byte cap = 10; // number of sequential bonus lamps
 
-  for (byte turnOff=(bonus+1); turnOff<11; turnOff++) {
+  for (byte turnOff=(bonus+1); turnOff<11; turnOff++) {  // turn off lamps first
     BSOS_SetLampState(BONUS_1 + (turnOff-1), 0);
   }
   if (bonus==0) return;

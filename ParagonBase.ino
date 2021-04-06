@@ -209,7 +209,15 @@ void setup() {
   }
   
   CurrentTime = millis();  
-}
+} // end: setup
+
+// ----------------------------------------------------------------------------------------------------
+
+////////////////////////////////////////////////////////////////////////////
+//
+//  Lamp Management functions
+//
+////////////////////////////////////////////////////////////////////////////
 
 #ifdef USE_PLAYER_LAMPS
 void SetPlayerLamps(byte numPlayers, int flashPeriod=0) {  // not needed because Paragon has no player lights
@@ -221,6 +229,10 @@ void SetPlayerLamps(byte numPlayers, int flashPeriod=0) {  // not needed because
 #endif
 
 
+// ----------------------------------------------------------------------------------------------------
+
+
+// maybe make this conditional to save space later
 void AddCredit() {
   if (Credits<MaximumCredits) {
     Credits++;
@@ -236,6 +248,7 @@ void AddCredit() {
 
 boolean AddPlayer() {
 
+  // these can play sounds if no credits/players available
   if (Credits<1 && !FreePlayMode) return false;
   if (CurrentNumPlayers>=4) return false;
 
@@ -249,6 +262,8 @@ boolean AddPlayer() {
   }
 
   BSOS_SetDisplayCredits(Credits);
+  
+  // routines here to add audit info and sounds
 
   return true;
 }

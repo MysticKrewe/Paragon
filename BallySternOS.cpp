@@ -464,7 +464,7 @@ void InterruptService2() {
     BSOS_DataRead(ADDRESS_U10_A);
   }
 
-  // If we get a weird interupt from U11B, clear it
+  // If we get a weird interrupt from U11B, clear it
   byte u11BControl = BSOS_DataRead(ADDRESS_U11_B_CONTROL);
   if (u11BControl & 0x80) {
     BSOS_DataRead(ADDRESS_U11_B);    
@@ -1361,7 +1361,7 @@ void BSOS_ApplyFlashToLamps(unsigned long curTime) {
 
 void BSOS_FlashAllLamps(unsigned long curTime) {
   for (int count=0; count<BSOS_MAX_LAMPS; count++) {
-    BSOS_SetLampState(count, 1, 0, 500);  
+    BSOS_SetLampState(count, 1, 0, 500);  // is 500ms the flash rate?
   }
 
   BSOS_ApplyFlashToLamps(curTime);
